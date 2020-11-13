@@ -1,0 +1,172 @@
+configurando a chave SSH
+https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+
+
+
+
+configuração inicial do git
+git config --global user.email nilson.upis@gmail.com
+
+-----
+git init
+
+git status
+
+git add . ou gir add *
+
+clear ---limpar a tela
+
+
+git commit - cria o commit
+
+git status  --- para ver se tem alguma coisa para comitar
+
+git log --logs dos commits
+
+git remote add origin git@github.com:Edutsi/aprendizjava.git
+
+git remote add origin git@github.com:Edutsi/aprendizjava/locadora-veiculo-web.git
+
+git remote -v 
+
+git push -u origin master        -----configurando a branch ---linha de desenvolvimento no repositorio git
+
+
+git push  ----envia as alterações para um repositorio remoto
+==================
+
+
+
+
+CONFIGURAÇÕES DE ROTINA "CTRL+S"
+
+git add .
+git status
+
+git commit -m "sua mensagem"
+
+git log
+
+git push
+
+
+
+
+
+===========================
+
+
+================
+COMANDOS ADICIONAIS DO GIT
+
+-------
+criar pasta dentro do diretorio
+
+git init
+mkdir locadora-veiculo-web
+cd locadora-veiculo-web
+
+git remote set-url origin git@github.com:Edutsi/aprendizjava.git  --- altera o URL de um repositório remote existente.
+
+--------------------
+git diff  --exibe as diferenças entre commits e branchs
+
+git diff HEAD~1 - compara com um commit anterior
+----------------
+git clone <URL>
+--------
+git pull --- baixa as alterações do repositório remoto. mantem o repositorio sincronizado com os últimos commits de uma branch(pega os commits de outros de sua equipe)
+
+
+--------
+git checkout <commit> <file>    ----ver como era o arquivo ou repositorio antes do commit
+
+exemplo:
+
+1 - git log
+
+#resultado
+# commit e40bfe225034727185889edcd5b82f013f66439a (HEAD -> master, origin/master)
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Thu Nov 12 22:07:34 2020 -0300
+
+    Commit inicial do projeto do curso algaworks
+    até aqui ja fiz até a parte de excluir fabricantes
+
+2 - git checkout e40bfe22503472718588
+
+3 - git checkout master - voltar para a branch
+
+-------------
+git checkout HEAD --arquivo  este comando desfaz a alteração/commit em determinado arquivo
+
+--------
+git revert <commit>   este comando ira criar um novo commit  que desfaz as alterações do commit especificado
+
+útil para desfazer um commit antigo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------
+ESTADO DOS ARQUIVOS
+
+. não monitorado(untracked)
+. modificado(modified)
+. preparado(staged) área deaqruivos prontos para serem comitados após dar o git add
+. consolidado(commited)
+
+
+
+
+
+
+
+
+
+
+
+
+
