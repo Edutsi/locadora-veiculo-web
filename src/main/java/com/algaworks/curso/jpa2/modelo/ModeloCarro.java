@@ -4,18 +4,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Fabricante {
-	private Long codigo;
-	private String nome;
+public class ModeloCarro {
 
+	private Long codigo;
+	private String descricao;
+	private Fabricante fabricante;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getCodigo() {
 		return codigo;
 	}
-
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -23,9 +31,7 @@ public class Fabricante {
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
-
-	@Override///foi feito source-generate equals/hashCode para o codigo para que ao cadastrar o modelo de carro o sistema possa fazer a comparação e validação do valor
-	//sem esse equals vai cair no erro "FABRICANTE: ERRO DE VALIDAÇÃO O VALOR NÃO É VÁLIDO"
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -33,7 +39,7 @@ public class Fabricante {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fabricante other = (Fabricante) obj;
+		ModeloCarro other = (ModeloCarro) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -41,16 +47,14 @@ public class Fabricante {
 			return false;
 		return true;
 	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-
-	public String getNome() {
-		return nome;
+	@ManyToOne //anotação, muitos modelos de carro para um fabricante
+	public Fabricante getFabricante() {
+		return fabricante;
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
 	}
 }
