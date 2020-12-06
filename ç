@@ -1,0 +1,50 @@
+[33mcommit 140a9326925553f29d7adde0136a8c437cd23e80[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Sun Dec 6 01:30:12 2020 -0300
+
+    commit da aula v4.10-relacionamento-muitos-para-muitos-v1 - implementado o CRUD do modelo de carro e acessorio, excluir ainda não funciona.
+
+[33mcommit ff442ab435bbaa850255f33d14029cd4872f02a8[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Tue Nov 17 09:37:22 2020 -0300
+
+    implementado o cadastro de modelo de carro v4.8-relacionamento-muitos-para-um-v1.mp4
+
+[33mcommit b5e5dfa6d66a82eeeb330e45b595ba4ec59f85ae[m
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Sun Nov 15 23:53:24 2020 -0300
+
+    mudei somente o arquivo de comandos do GIT
+
+[33mcommit ee0c5ad46eaf2f4b4f3a7faa4d0e7b374272e7b7[m
+Merge: c037056 45dbace
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Sun Nov 15 23:36:05 2020 -0300
+
+    Merge branch 'master' of github.com:Edutsi/locadora-veiculo-web into master
+
+[33mcommit c0370563ea61827a33249eccdb2606a6bf5e8480[m
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Sun Nov 15 23:20:33 2020 -0300
+
+    Dia 15/11/20 integrando o curso de GIT da  UDEMY  o curso JPA=HIBERNATE
+    Estou no ponto e excluir o fabricante aula: v4.4-implementando-a-edicao-v1
+
+[33mcommit d427136d7983515866e4ffa31ddaa5817ef62134[m
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Sun Nov 15 11:31:00 2020 -0300
+
+    Commit inicial, para o projeto do curso JPA-Hibernate, ate aqui ja fiz ate a parte de excluir o FABRICANTE v4.3-implementando-a-consulta-e-exclusao-v1.mp4
+
+[33mcommit 45dbacebf07aeb0f621115d95df3d2fa6baab487[m
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Fri Nov 13 09:43:07 2020 -0300
+
+    inseri o arquivo com os comandos do GIT
+
+[33mcommit e40bfe225034727185889edcd5b82f013f66439a[m
+Author: edutsi <nilson.upis@gmail.com>
+Date:   Thu Nov 12 22:07:34 2020 -0300
+
+    Commit inicial do projeto do curso algaworks
+    até aqui ja fiz até a parte de excluir fabricantes
