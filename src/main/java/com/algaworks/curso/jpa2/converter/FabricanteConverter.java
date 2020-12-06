@@ -37,7 +37,7 @@ public class FabricanteConverter implements Converter {
 			Long codigo = ((Fabricante) value).getCodigo();
 			String retorno = (codigo == null ? null : codigo.toString());
 			
-			return retorno;
+			return retorno;///retorna o objeto criado e compara com o codigo
 		}
 		
 		return "";

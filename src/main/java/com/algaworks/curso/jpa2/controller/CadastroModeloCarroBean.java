@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.controller;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,14 +16,14 @@ import com.algaworks.curso.jpa2.service.CadastroModeloCarroService;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jsf.FacesUtil;
 
-//JA ENTRA DA PARTE DO JSF  javax.faces.bean.ViewScoped
 @Named
 @ViewScoped
 public class CadastroModeloCarroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private ModeloCarro modeloCarro;
+	
 	private List<Fabricante> fabricantes;
 	
 	@Inject
@@ -31,38 +32,36 @@ public class CadastroModeloCarroBean implements Serializable {
 	@Inject
 	private FabricanteDAO fabricanteDAO;
 	
-	
 	public void salvar() {
 		try {
 			this.cadastroModeloCarroService.salvar(modeloCarro);
-			FacesUtil.addSuccessMessage("Modelo de carro salvo com sucesso!");
-		}catch(NegocioException e) {
+			FacesUtil.addSuccessMessage("Modelo carro salvo com sucesso!");
+		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
-		this.limpar();
 		
+		this.limpar();
 	}
+	
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
 		this.fabricantes = fabricanteDAO.buscarTodos();
-		
 	}
-	public void limpar(){
+	
+	public void limpar() {
 		this.modeloCarro = new ModeloCarro();
 	}
+
 	public ModeloCarro getModeloCarro() {
 		return modeloCarro;
 	}
 	public void setModeloCarro(ModeloCarro modeloCarro) {
 		this.modeloCarro = modeloCarro;
 	}
+
 	public List<Fabricante> getFabricantes() {
 		return fabricantes;
 	}
-	public void setFabricantes(List<Fabricante> fabricantes) {
-		this.fabricantes = fabricantes;
-	}
-
 	
 }

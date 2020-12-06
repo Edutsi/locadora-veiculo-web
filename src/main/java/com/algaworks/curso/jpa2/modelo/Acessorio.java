@@ -4,15 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class ModeloCarro {
+public class Acessorio {
 
 	private Long codigo;
 	private String descricao;
-	private Fabricante fabricante;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,15 +25,6 @@ public class ModeloCarro {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	@ManyToOne
-	@JoinColumn(name="codigo_fabricante")
-	public Fabricante getFabricante() {
-		return fabricante;
-	}
-	public void setFabricante(Fabricante fabricante) {
-		this.fabricante = fabricante;
 	}
 	
 	@Override
@@ -55,7 +43,7 @@ public class ModeloCarro {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ModeloCarro other = (ModeloCarro) obj;
+		Acessorio other = (Acessorio) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
