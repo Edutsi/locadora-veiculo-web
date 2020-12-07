@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Carro {
@@ -22,6 +23,9 @@ public class Carro {
 	private BigDecimal valorDiaria;
 	private ModeloCarro modelo;
 	private List<Acessorio> acessorios;
+	private List<Aluguel> alugueis;//para guardar o historico de algueis de um carro
+	
+	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -80,6 +84,13 @@ public class Carro {
 		this.acessorios = acessorios;
 	}
 	
+	@OneToMany(mappedBy= "carro")//foi mapeado na classe aluguel no atributo carro
+	public List<Aluguel> getAlugueis() {
+		return alugueis;
+	}
+	public void setAlugueis(List<Aluguel> alugueis) {
+		this.alugueis = alugueis;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
