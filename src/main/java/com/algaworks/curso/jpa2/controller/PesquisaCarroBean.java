@@ -1,4 +1,4 @@
-package com.algaworks.curso.jpa2.controller;
+  package com.algaworks.curso.jpa2.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,6 +52,10 @@ public class PesquisaCarroBean implements Serializable {
 	@PostConstruct
 	public void inicializar() {
 		carros = carroDAO.buscarTodos();
+	}
+	
+	public void buscarCarroComAcessorios() {
+		carroSelecionado = carroDAO.buscarCarroComAcessorios(carroSelecionado.getCodigo());
 	}
 	
 }

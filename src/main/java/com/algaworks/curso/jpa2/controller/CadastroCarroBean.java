@@ -51,6 +51,7 @@ public class CadastroCarroBean implements Serializable {
 		try {
 			this.cadastroCarroService.salvar(carro);
 			FacesUtil.addSuccessMessage("Carro salvo com sucesso!");
+			
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		} catch (Exception e) {
