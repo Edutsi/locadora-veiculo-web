@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.modelo;
 
 import java.math.BigDecimal;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -75,8 +76,7 @@ public class Carro {
 	}
 	
 	//@ManyToMany(fetch=FetchType.EAGER)//toda vez q buscar um carro tras todos os acessorios- icone acessorios pesado pois traz toos os acessorios
-	@ManyToMany(fetch=FetchType.LAZY)//Lazy nao traz todos os acessorios
-	//@ManyToMany
+	@ManyToMany(fetch=FetchType.LAZY)//Lazy nao traz todos os acessorios-retorna somente o acessorio do ítem requisitado
 	@JoinTable(name="carro_acessorio"
 				, joinColumns=@JoinColumn(name="codigo_carro")
 				, inverseJoinColumns=@JoinColumn(name="codigo_acessorio"))

@@ -1,6 +1,8 @@
 package com.algaworks.curso.jpa2.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ public class ModeloCarro {
 	private Long codigo;
 	private String descricao;
 	private Fabricante fabricante;
+	private Categoria categoria;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -30,7 +33,7 @@ public class ModeloCarro {
 		this.descricao = descricao;
 	}
 
-	@ManyToOne
+	@ManyToOne//anotação para um classe
 	@JoinColumn(name="codigo_fabricante")
 	public Fabricante getFabricante() {
 		return fabricante;
@@ -38,7 +41,14 @@ public class ModeloCarro {
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
 	}
-	
+	//@Enumerated(EnumType.ORDINAL)//se quiser guardar o código em vez da string 
+	@Enumerated(EnumType.STRING)//enumType.string - anotação para guardar a palavra inteira EX: HATCH_COMPACTO
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
