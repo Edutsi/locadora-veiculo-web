@@ -28,7 +28,14 @@ git remote add origin git@github.com:Edutsi/aprendizjava.git
 
 git remote add origin git@github.com:Edutsi/locadora-veiculo-web.git
 
+git remote add origin git@github.com:Edutsi/distribuidora.git
+
+git pull https://github.com/Edutsi/distribuidora.git
+
+
 git remote -v 
+
+git pull origin master --allow-unrelated-histories
 
 git push -u origin master        -----configurando a branch ---linha de desenvolvimento no repositorio git
 
@@ -120,7 +127,9 @@ resoluçao de problema pra comitar
 https://cursos.alura.com.br/forum/topico-nao-consigo-dar-um-push-no-meu-projeto-git-45617
 
 
-
+--------
+Resolvendo o erro “fatal: refusing to merge unrelated histories” no Git
+https://community.umbler.com/br/t/resolvendo-o-erro-fatal-refusing-to-merge-unrelated-histories-no-git/657
 
 
 

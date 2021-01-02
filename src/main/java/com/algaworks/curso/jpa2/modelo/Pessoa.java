@@ -62,5 +62,30 @@ public class Pessoa {
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+	///Motorista: Erro de validação: o valor não é válido - correção é implementar o equals() e o hashCode()!
+	//Mande o eclipse gerar esses métodos na classe Pessoa utilizando o código como parâmetro. Assim Motorista e Funcionário herdarão os métodos.
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
 
 }
