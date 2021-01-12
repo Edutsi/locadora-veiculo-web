@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import com.algaworks.curso.jpa2.dao.CarroDAO;
 import com.algaworks.curso.jpa2.modelo.Carro;
+import com.algaworks.curso.jpa2.modelolazy.LazyCarroDataModel;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jsf.FacesUtil;
 
@@ -24,7 +25,7 @@ public class PesquisaCarroBean implements Serializable {
 	CarroDAO carroDAO;
 	
 	private List<Carro> carros = new ArrayList<>();
-	
+	private LazyCarroDataModel lazyCarros;
 	private Carro carroSelecionado;
 	
 	public List<Carro> getCarros() {
@@ -51,9 +52,14 @@ public class PesquisaCarroBean implements Serializable {
 
 	@PostConstruct
 	public void inicializar() {
-		carros = carroDAO.buscarTodos();
+		//carros = carroDAO.buscarTodos();
+		lazyCarros = new LazyCarroDataModel(carroDAO);
 	}
 	
+	public LazyCarroDataModel getLazyCarros() {
+		return lazyCarros;
+	}
+
 	public void buscarCarroComAcessorios() {
 		carroSelecionado = carroDAO.buscarCarroComAcessorios(carroSelecionado.getCodigo());
 	}
