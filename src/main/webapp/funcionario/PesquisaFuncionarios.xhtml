@@ -20,11 +20,12 @@
 			</p:toolbar>
 
 			<p:dataTable id="funcionariosTable"
-				value="#{pesquisaFuncionarioBean.funcionarios}" var="funcionario"
+				value="#{pesquisaFuncionarioBean.lazyFuncionarios}" var="funcionario"
 				style="margin-top: 20px"
-				emptyMessage="Nenhum funcionario encontrado." rows="20"
+				emptyMessage="Nenhum funcionario encontrado." rows="5"
 				paginator="true" paginatorAlwaysVisible="false"
-				paginatorPosition="bottom">
+				paginatorPosition="bottom"
+				lazy="true" rowsPerPageTemplate="5,10,15">
 				<p:column headerText="Código"
 					style="text-align: center; width: 100px">
 					<h:outputText value="#{funcionario.codigo}" />

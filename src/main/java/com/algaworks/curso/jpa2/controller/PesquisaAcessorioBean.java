@@ -3,12 +3,16 @@ package com.algaworks.curso.jpa2.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import com.algaworks.curso.jpa2.dao.AcessorioDAO;
 import com.algaworks.curso.jpa2.modelo.Acessorio;
+import com.algaworks.curso.jpa2.modelolazy.LazyAcessorioDataModel;
+import com.algaworks.curso.jpa2.modelolazy.LazyFabricanteDataModel;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jsf.FacesUtil;
 
@@ -20,7 +24,7 @@ public class PesquisaAcessorioBean implements Serializable {
 
 	@Inject
 	AcessorioDAO acessorioDAO;
-	
+	private LazyAcessorioDataModel lazyAcessorios;
 	private List<Acessorio> acessorios = new ArrayList<>();
 	
 	private Acessorio acessorioSelecionado;
@@ -48,6 +52,12 @@ public class PesquisaAcessorioBean implements Serializable {
 	
 	@PostConstruct
 	public void inicializar() {
-		acessorios = acessorioDAO.buscarTodos();
+		//acessorios = acessorioDAO.buscarTodos();
+		lazyAcessorios = new LazyAcessorioDataModel(acessorioDAO);
 	}
+
+	public LazyAcessorioDataModel getLazyAcessorios() {
+		return lazyAcessorios;
+	}
+	
 }

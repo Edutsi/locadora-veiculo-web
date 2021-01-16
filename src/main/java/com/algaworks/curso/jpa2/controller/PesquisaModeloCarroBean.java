@@ -1,7 +1,6 @@
 package com.algaworks.curso.jpa2.controller;
 
 import java.io.Serializable;
-
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +10,8 @@ import javax.inject.Named;
 
 import com.algaworks.curso.jpa2.dao.ModeloCarroDAO;
 import com.algaworks.curso.jpa2.modelo.ModeloCarro;
+import com.algaworks.curso.jpa2.modelolazy.LazyModeloCarroDataModel;
+import com.algaworks.curso.jpa2.modelolazy.LazyMotoristaDataModel;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jsf.FacesUtil;
 
@@ -21,7 +22,7 @@ public class PesquisaModeloCarroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private List<ModeloCarro> modelosCarro;
-	
+	private LazyModeloCarroDataModel lazyModeloCarros;
 	private ModeloCarro modeloCarroSelecionado;
 	
 	@Inject
@@ -33,7 +34,8 @@ public class PesquisaModeloCarroBean implements Serializable {
 	
 	@PostConstruct
 	public void inicializar() {
-		this.modelosCarro = this.modeloCarroDAO.buscarTodos();
+		//this.modelosCarro = this.modeloCarroDAO.buscarTodos();
+		lazyModeloCarros = new LazyModeloCarroDataModel(modeloCarroDAO);
 	}
 	
 	public void excluir() {
@@ -51,6 +53,10 @@ public class PesquisaModeloCarroBean implements Serializable {
 	}
 	public void setModeloCarroSelecionado(ModeloCarro modeloCarroSelecionado) {
 		this.modeloCarroSelecionado = modeloCarroSelecionado;
+	}
+
+	public LazyModeloCarroDataModel getLazyModeloCarros() {
+		return lazyModeloCarros;
 	}
 	
 }

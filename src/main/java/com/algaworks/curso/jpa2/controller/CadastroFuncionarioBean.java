@@ -38,7 +38,7 @@ public class CadastroFuncionarioBean implements Serializable {
 	public void salvar() {
 		try {
 			this.cadastroFuncionarioService.salvar(funcionario);
-			FacesUtil.addSuccessMessage("Funcionário salvo com sucesso!");
+			FacesUtil.addSuccessMessage("Funcionario salvo com sucesso!");
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
@@ -56,4 +56,5 @@ public class CadastroFuncionarioBean implements Serializable {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
+
 }

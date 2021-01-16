@@ -1,7 +1,6 @@
 package com.algaworks.curso.jpa2.controller;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import javax.inject.Named;
 
 import com.algaworks.curso.jpa2.dao.FuncionarioDAO;
 import com.algaworks.curso.jpa2.modelo.Funcionario;
+import com.algaworks.curso.jpa2.modelolazy.LazyFuncionarioDataModel;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jsf.FacesUtil;
 
@@ -24,7 +24,7 @@ public class PesquisaFuncionarioBean implements Serializable {
 
 	@Inject
 	FuncionarioDAO funcionarioDAO;
-	
+	private LazyFuncionarioDataModel lazyFuncionarios;
 	private List<Funcionario> funcionarios = new ArrayList<>();
 	///sem o GET list a baixo não achava o bean e gera erro
 	public List<Funcionario> getFuncionarios() {
@@ -53,9 +53,16 @@ public class PesquisaFuncionarioBean implements Serializable {
 	
 	@PostConstruct
 	public void inicializar() {
-		funcionarios = funcionarioDAO.buscarTodos();
+		//funcionarios = funcionarioDAO.buscarTodos();
+		lazyFuncionarios = new LazyFuncionarioDataModel(funcionarioDAO);
 		
 	}
+
+	public LazyFuncionarioDataModel getLazyFuncionarios() {
+		return lazyFuncionarios;
+	}
+
+
 
 	
 }

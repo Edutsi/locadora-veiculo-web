@@ -38,5 +38,16 @@ public class ModeloCarroDAO implements Serializable {
 			throw new NegocioException("Este modelo não pode ser excluído.");
 		}
 	}
+	@SuppressWarnings("unchecked")
+	public List<ModeloCarro> buscarComPaginacao(int first, int pageSize) {
+
+		return manager.createNamedQuery("ModeloCarro.buscarTodos").setFirstResult(first).setMaxResults(pageSize)
+				.getResultList();
+	}
+
+	public Long encontrarQuantidadeDeModeloCarros() {
+
+		return manager.createQuery("select count(m) from Motorista m", Long.class).getSingleResult();
+	}
 	
 }

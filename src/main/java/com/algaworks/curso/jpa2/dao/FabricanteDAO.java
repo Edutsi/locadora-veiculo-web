@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.dao;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,6 +36,20 @@ public class FabricanteDAO implements Serializable {
 
 	public Fabricante buscarPeloCodigo(Long codigo) {
 		return em.find(Fabricante.class, codigo);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Fabricante> buscarComPaginacao(int first, int pageSize) {
+		
+		return em.createNamedQuery("Fabricante.buscarTodos")
+				              .setFirstResult(first)
+				              .setMaxResults(pageSize)
+				              .getResultList();
+	}
+
+	public Long encontrarQuantidadeDeFabricantes() {
+		
+		return em.createQuery("select count(f) from Fabricante f", Long.class).getSingleResult();
 	}
 	
 }

@@ -1,7 +1,6 @@
 package com.algaworks.curso.jpa2.service;
 
 import java.io.Serializable;
-
 import javax.inject.Inject;
 
 import com.algaworks.curso.jpa2.dao.MotoristaDAO;

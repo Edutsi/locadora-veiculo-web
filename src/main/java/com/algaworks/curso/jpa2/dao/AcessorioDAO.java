@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
 import com.algaworks.curso.jpa2.modelo.Acessorio;
+import com.algaworks.curso.jpa2.modelo.Fabricante;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
@@ -40,4 +41,18 @@ public class AcessorioDAO implements Serializable {
 			throw new NegocioException("Acessorio não pode ser excluído.");
 		}
 	}
+	@SuppressWarnings("unchecked")
+	public List<Acessorio> buscarComPaginacao(int first, int pageSize) {
+		
+		return manager.createNamedQuery("Acessorio.buscarTodos")
+				              .setFirstResult(first)
+				              .setMaxResults(pageSize)
+				              .getResultList();
+	}
+
+	public Long encontrarQuantidadeDeAcessorios() {
+		
+		return manager.createQuery("select count(a) from Acessorio a", Long.class).getSingleResult();
+	}
+	
 }
