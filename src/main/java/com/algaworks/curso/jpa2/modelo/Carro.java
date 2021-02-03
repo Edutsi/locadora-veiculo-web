@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.modelo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,6 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
@@ -36,6 +41,9 @@ public class Carro {
 	private List<Acessorio> acessorios;
 	private List<Aluguel> alugueis;//para guardar o historico de algueis de um carro
 	
+	
+	private Date dataCriacao;
+	private Date dataModificacao;
 	
 	
 	@Id
@@ -103,6 +111,31 @@ public class Carro {
 	public void setAlugueis(List<Aluguel> alugueis) {
 		this.alugueis = alugueis;
 	}
+	
+	@Temporal(TemporalType.TIMESTAMP)///mapeando data e hora
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDataModificacao() {
+		return dataModificacao;
+	}
+	public void setDataModificacao(Date dataModificacao) {
+		this.dataModificacao = dataModificacao;
+	}
+	@PrePersist/// o metodo vai ser executado antes de ser persistido
+	@PreUpdate///executa o metodo antes de ser atualizado
+	public void configuraDatasCriacaoAlteracao() {
+		this.dataModificacao = new Date();
+		
+		if(this.dataCriacao ==null){
+			this.dataCriacao = new Date();
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
