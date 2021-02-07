@@ -23,10 +23,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name ="Carro.buscarTodos", query="select c from Carro c"),
+@NamedQuery(name ="Carro.buscarTodos", query="select c from Carro c inner join fetch c.modelo"),//aula 8.8 inserido o join FETCH para melhorar a performance do banco
 @NamedQuery(name="Carro.buscarCarroComAcessorios", query="select c "
 		                                              + "from Carro c JOIN c.acessorios a"
-		                                              + " where c.codigo = :codigo")
+		                                              + " where c.codigo = :codigo")//JPQL
 
 
 })
@@ -83,7 +83,9 @@ public class Carro {
 		this.valorDiaria = valorDiaria;
 	}
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)//retornar os modelos pedidos e não todos com o EAGer alteração feita na aula 8.8
+	 
+	
 	@JoinColumn(name="codigo_modelo")
 	public ModeloCarro getModelo() {
 		return modelo;

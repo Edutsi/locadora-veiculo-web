@@ -3,6 +3,7 @@ package com.algaworks.curso.jpa2.modelo;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +40,7 @@ public class ModeloCarro {
 		this.descricao = descricao;
 	}
 
-	@ManyToOne//anotação para um classe
+	@ManyToOne(fetch=FetchType.LAZY)//anotação para um classe - aula 8.8 para que o JOIN FETCH não traga tudo que foi consultado pq o default é FetchType.EAGER mudei para o LAZY que traz so o pedido
 	@JoinColumn(name="codigo_fabricante")
 	public Fabricante getFabricante() {
 		return fabricante;
