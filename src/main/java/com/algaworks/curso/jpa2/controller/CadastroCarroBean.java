@@ -1,6 +1,9 @@
 package com.algaworks.curso.jpa2.controller;
 
 import java.io.Serializable;
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +11,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+
+import org.primefaces.model.UploadedFile;
 
 import com.algaworks.curso.jpa2.dao.AcessorioDAO;
 import com.algaworks.curso.jpa2.dao.ModeloCarroDAO;
@@ -29,41 +32,47 @@ public class CadastroCarroBean implements Serializable {
 	private Carro carro;
 
 	private List<ModeloCarro> modelosCarros;
-	
+
 	private List<Acessorio> acessorios;
-	
+
 	@Inject
 	private CadastroCarroService cadastroCarroService;
-	
+
 	@Inject
 	private AcessorioDAO acessorioDAO;
-	
+
 	@Inject
 	private ModeloCarroDAO modeloCarroDAO;
-	
+
+	private UploadedFile uploadedFile;// v10.6-objetos-grandes-v1 - add campo foto
+
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
-		
+
 		this.acessorios = acessorioDAO.buscarTodos();
 		this.modelosCarros = this.modeloCarroDAO.buscarTodos();
 	}
-	
+
 	public void salvar() {
 		try {
+			if (this.uploadedFile != null) {
+				this.carro.setFoto(this.uploadedFile.getContents());//getcontets retorna um array de bites
+			}
+
 			this.cadastroCarroService.salvar(carro);
 			FacesUtil.addSuccessMessage("Carro salvo com sucesso!");
-			
+
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.addErrorMessage("Erro desconhecido. Contatar o administrador");
 		}
-		
+
 		this.limpar();
 	}
-	
+
 	public void limpar() {
 		this.carro = new Carro();
 		this.carro.setAcessorios(new ArrayList<Acessorio>());
@@ -72,6 +81,7 @@ public class CadastroCarroBean implements Serializable {
 	public Carro getCarro() {
 		return carro;
 	}
+
 	public void setCarro(Carro carro) {
 		this.carro = carro;
 	}
@@ -82,6 +92,14 @@ public class CadastroCarroBean implements Serializable {
 
 	public List<ModeloCarro> getModelosCarros() {
 		return modelosCarros;
+	}
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
 	}
 
 }

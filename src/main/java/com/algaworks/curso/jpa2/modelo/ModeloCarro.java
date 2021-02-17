@@ -1,5 +1,6 @@
 package com.algaworks.curso.jpa2.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -40,7 +41,8 @@ public class ModeloCarro {
 		this.descricao = descricao;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)//anotação para um classe - aula 8.8 para que o JOIN FETCH não traga tudo que foi consultado pq o default é FetchType.EAGER mudei para o LAZY que traz so o pedido
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)//anotação para um classe - aula 8.8 para que o JOIN FETCH não traga tudo que foi consultado pq o default é FetchType.EAGER mudei para o LAZY que traz so o pedido
+	//cascade serve para persistir o OBJ no prepersist
 	@JoinColumn(name="codigo_fabricante")
 	public Fabricante getFabricante() {
 		return fabricante;

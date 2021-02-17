@@ -23,8 +23,12 @@
 		    		style="margin-top: 20px" emptyMessage="Nenhum carro encontrado." rows="5"
 		    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom"
 		    		lazy="true" rowsPerPageTemplate="5,10,15">
+		    		
 		    		<p:column headerText="Código" style="text-align: center; width: 100px">
 		    			<h:outputText value="#{carro.codigo}" />
+		    		</p:column>
+		    		<p:column headerText="Modelo">
+		    			<h:outputText value="#{carro.modelo.descricao}" />
 		    		</p:column>
 		    		<p:column headerText="Placa">
 		    			<h:outputText value="#{carro.placa}" />
@@ -35,7 +39,7 @@
 		    		<p:column headerText="Valor diária">
 		    			<h:outputText value="#{carro.valorDiaria}" />
 		    		</p:column>
-		    		<p:column headerText="Acessórios" style="width: 300px; text-align: center">
+		    		<p:column headerText="Acessórios" style="width: 100px; text-align: center">
 		    			<p:commandButton icon="ui-icon-extlink" title="Acessórios" action="#{pesquisaCarroBean.buscarCarroComAcessorios}"
 		    					process="@this" oncomplete="mostraAcessorios.show()" update=":frmPesquisa:mostraAcessoriosDialog">
 		    				<f:setPropertyActionListener target="#{pesquisaCarroBean.carroSelecionado}" value="#{carro}" />
@@ -47,13 +51,13 @@
 		    			</p:button>
 		    			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confirmacaoExclusao.show()"
 								process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
-							<f:setPropertyActionListener target="#{pesquisaCarroBean.carroSelecionado}" value="#{carro}" />
+							<f:setPropertyActionListener target="#{pesquisaCarroBean.carroSelecionadoParaExcluir}" value="#{carro}" />
 						</p:commandButton>
 		    		</p:column>
 		    </p:dataTable>
 		   
 		    <p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
-	        		message="Tem certeza que deseja excluir o carro de placa #{pesquisaCarroBean.carroSelecionado.placa}?"  
+	        		message="Tem certeza que deseja excluir o carro de placa #{pesquisaCarroBean.carroSelecionadoParaExcluir.placa}?"  
 	                header="Exclusão de carro" severity="alert">
 	        	<p:button value="Não" onclick="confirmacaoExclusao.hide(); return false;" />
 	        	<p:commandButton value="Sim" update=":frmPesquisa:carrosTable"

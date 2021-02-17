@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @NamedQueries({
 @NamedQuery(name ="Acessorio.buscarTodos", query="select a from Acessorio a")
@@ -26,6 +28,7 @@ public class Acessorio {
 		this.codigo = codigo;
 	}
 	
+	@NotBlank(message="A descricão deve ser informada")
 	public String getDescricao() {
 		return descricao;
 	}

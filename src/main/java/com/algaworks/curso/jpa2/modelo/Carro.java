@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -44,7 +47,7 @@ public class Carro {
 	
 	private Date dataCriacao;
 	private Date dataModificacao;
-	
+	private byte[] foto;//v10.6-objetos-grandes-v1
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -83,8 +86,8 @@ public class Carro {
 		this.valorDiaria = valorDiaria;
 	}
 	
-	@ManyToOne(fetch=FetchType.LAZY)//retornar os modelos pedidos e não todos com o EAGer alteração feita na aula 8.8
-	 
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)//retornar os modelos pedidos e não todos com o EAGer alteração feita na aula 8.8
+	 //cascade implantado na aula 9.1
 	
 	@JoinColumn(name="codigo_modelo")
 	public ModeloCarro getModelo() {
@@ -105,7 +108,9 @@ public class Carro {
 	public void setAcessorios(List<Acessorio> acessorios) {
 		this.acessorios = acessorios;
 	}
-	
+	///util para liberar q o gerente apague um carro
+	//@OneToMany(mappedBy= "carro", cascade=CascadeType.REMOVE)//somente para teste da aula 9.4-exclusao-em-cascata-v1- pq permite apagar um carro q tenha um aluguel
+	//@OneToMany(mappedBy= "carro", cascade=CascadeType.PERSIST, orphanRemoval=true)//aula9.5 remover obj orfao
 	@OneToMany(mappedBy= "carro")//foi mapeado na classe aluguel no atributo carro
 	public List<Aluguel> getAlugueis() {
 		return alugueis;
@@ -137,7 +142,14 @@ public class Carro {
 			this.dataCriacao = new Date();
 		}
 	}
-	
+	@Lob//anotacao para salvar a foto
+	@Column(name="foto_carro")
+	public byte[] getFoto() {
+		return foto;
+	}
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

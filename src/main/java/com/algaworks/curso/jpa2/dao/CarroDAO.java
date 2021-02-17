@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.dao;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.inject.Inject;

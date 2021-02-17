@@ -3,6 +3,7 @@ package com.algaworks.curso.jpa2.criteria;
 //TESTE PARA FAZER UM CONSULTA COM CRITERIA -- FAZENDO UM FROM NO CARRO E TRAZENDO APENAS A PLACA
 import java.util.List;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
